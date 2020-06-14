@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Andrey's</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<th:block th:include="/header.html"/>
+
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Product</span></h1>
+    <hr class="hr-3"/>
+    <form class="mx-auto w-25 bg-blur" th:action="@{/product/add}" th:method="post" th:object="${product}">
+
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="name" class="h4 mb-2">Name</label>
+            </div>
+            <input th:field="*{name}" type="text" class="form-control" id="name" name="name"/>
+
+            <th:block th:each="error : ${#fields.errors('name')}">
+                <p class="errors alert alert-danger" th:text="${error}"/>
+            </th:block>
+        </div>
+
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="description" class="h4 mb-2">Description</label>
+            </div>
+            <input th:field="*{description}" type="text" class="form-control" id="description" name="description"/>
+
+            <th:block th:each="error : ${#fields.errors('description')}">
+                <p class="errors alert alert-danger" th:text="${error}"/>
+            </th:block>
+        </div>
+
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="category" class="h4 mb-2">Category</label>
+            </div>
+            <select th:field="*{category}" id="category" name="category" th:value="*{category}">
+                <option value="SHIRT">Shirt</option>
+                <option value="DENIM">Denim</option>
+                <option value="SHORTS">Shorts</option>
+                <option value="JACKET">Jacket</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="sex" class="h4 mb-2">Sex</label>
+            </div>
+            <select th:field="*{sex}" id="sex" name="sex" th:value="*{sex}">
+                <option value="MALE">Male</option>
+                <option value="FEMALE">Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="price" class="h4 mb-2">Price</label>
+            </div>
+            <input th:field="*{price}" type="number" class="form-control" id="price" name="price"/>
+
+            <th:block th:each="error : ${#fields.errors('price')}">
+                <p class="errors alert alert-danger" th:text="${error}"/>
+            </th:block>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-secondary text-white mb-3">Add Product</button>
+        </div>
+
+    </form>
+</main>
+
+<th:block th:include="/footer.html"/>
+
+
+</body>
+</html>

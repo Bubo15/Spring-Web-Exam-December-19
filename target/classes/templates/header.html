@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+
+        <a class="nav-link text-white active h5" th:href="@{/}">Andrey's</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+            <ul class="navbar-nav row">
+
+                <li  class="col-md-4">
+                    <a class="nav-link text-white active h5" th:href="@{/}">Home</a>
+                </li>
+
+                <th:block th:if="${session.username != null}">
+                    <li class="col-md-4">
+                        <a class="nav-link text-white active h5" th:href="@{/product/add}">Add Product</a>
+                    </li>
+                    <li class="col-md-4">
+                        <a class="nav-link text-white active h5" th:href="@{/user/logout}">Logout</a>
+                    </li>
+                </th:block>
+
+                <th:block th:if="${session.username == null}">
+                    <li class="nav-item col-md-4">
+                        <a class="nav-link text-white active h5" th:href="@{/user/login}">Login</a>
+                    </li>
+                    <li class="nav-item col-md-4">
+                        <a class="nav-link text-white active h5" th:href="@{/user/register}">Register</a>
+                    </li>
+                </th:block>
+
+            </ul>
+        </div>
+    </nav>
+</header>
+
+</html>

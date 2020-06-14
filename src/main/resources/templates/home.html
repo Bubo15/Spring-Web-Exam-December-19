@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Andrey's</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<th:block th:insert="header.html"/>
+
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Products</span></h1>
+    <hr class="hr-3"/>
+
+    <th:block th:each="product : ${products}">
+        <div class="bg-blur container w-50">
+            <div class="row mb-4 d-flex flex-column text-center">
+                                <a th:href="@{'/product/details/' + ${product.getId()}}">
+                                    <img th:src="@{'/img/' + ${product.getCategory().name().toUpperCase()} + '-' + ${product.getSex().name().toUpperCase()} + '.jpg'}" class="img-thumbnail" width="200" height="200"/>
+                                </a>
+                <h5 class="text-center" th:text="${product.getName()}">Buzzer</h5>
+                <h2 class="text-center" th:text="${product.getPrice()}">65.00</h2>
+            </div>
+        </div>
+    </th:block>
+
+</main>
+<span style="visibility: hidden">...</span>
+
+<th:block th:insert="footer.html"/>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+      <head>
+            <meta charset="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title>Andrey's</title>
+            <link rel="stylesheet" href="/css/reset-css.css"/>
+            <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="/css/style.css"/>
+        </head>
+<body>
+
+<th:block th:insert="header.html"/>
+
+    <main>
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Details</span></h1>
+        <hr class="my-3"/>
+        <div class="container-fluid bg-blur w-50">
+            <div class="row justify-content-center">
+                <form class="w-50 justify-content-center" th:object="${product}">
+
+                    <div class="label mt-2">
+                        <h2 th:text="*{name}" class="text-white text-center">Buzzer</h2>
+                    </div>
+
+                    <div class="label mt-4">
+                        <img library="img" th:src="@{'/img/' + ${product.getCategory().name().toUpperCase()} + '-' + ${product.getSex().name().toUpperCase()} + '.jpg'}" class="img-thumbnail" width="200" height="200"/>
+                        <h3 th:text="*{description}" class="text-white text-center">80% silk</h3>
+                    </div>
+
+                    <div class="label mt-4">
+                        <h3 th:text="*{price}" class="text-white text-center mb-3">65.00</h3>
+                    </div>
+
+                    <div class="button-holder d-flex justify-content-center" >
+                        <a class="btn btn-danger text-white mb-3" th:href="@{'/product/delete/' + ${product.getId()}}">Delete Product</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </main>
+
+<th:block th:insert="footer.html"/>
+
+</body>
+</html>
