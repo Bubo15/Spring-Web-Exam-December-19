@@ -11,6 +11,7 @@ public class Product extends BaseEntity{
     private double price;
     private Category category;
     private Sex sex;
+    private User user;
 
     public Product() {
     }
@@ -60,5 +61,15 @@ public class Product extends BaseEntity{
 
     public void setSex(Sex sex) {
         this.sex = sex;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="user_id", referencedColumnName = "id")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
