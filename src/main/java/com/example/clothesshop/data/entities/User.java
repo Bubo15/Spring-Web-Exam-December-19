@@ -1,6 +1,7 @@
 package com.example.clothesshop.data.entities;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,6 +12,7 @@ public class User extends BaseEntity {
     private String password;
     private String email;
     private Set<Role> authorities;
+    private Set<Product> products;
 
     public User() {
     }
@@ -51,5 +53,14 @@ public class User extends BaseEntity {
 
     public void setAuthorities(Set<Role> authorities) {
         this.authorities = authorities;
+    }
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }
