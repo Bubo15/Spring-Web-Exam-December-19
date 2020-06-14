@@ -2,6 +2,9 @@ package com.example.clothesshop.web.model.view;
 
 import com.example.clothesshop.data.entities.Category;
 import com.example.clothesshop.data.entities.Sex;
+import com.example.clothesshop.data.entities.User;
+
+import java.util.Set;
 
 public class ProductViewModel {
 
@@ -11,6 +14,7 @@ public class ProductViewModel {
     private Category category;
     private Sex sex;
     private String description;
+    private User user;
 
     public ProductViewModel() {
     }
@@ -61,5 +65,13 @@ public class ProductViewModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
