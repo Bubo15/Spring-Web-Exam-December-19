@@ -32,7 +32,7 @@
                         <h3 th:text="*{price}" class="text-white text-center mb-3">65.00</h3>
                     </div>
 
-                    <div class="button-holder d-flex justify-content-center" >
+                    <div th:if="${product.getUser().getUsername() == session.username}" class="button-holder d-flex justify-content-center" >
                         <a class="btn btn-danger text-white mb-3" th:href="@{'/product/delete/' + ${product.getId()}}">Delete Product</a>
                     </div>
 
