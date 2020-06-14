@@ -1,9 +1,11 @@
 package com.example.clothesshop.service.services.impl;
 
 import com.example.clothesshop.data.entities.Product;
+import com.example.clothesshop.data.entities.User;
 import com.example.clothesshop.data.repositories.ProductRepository;
 import com.example.clothesshop.service.model.ProductServiceModel;
 import com.example.clothesshop.service.services.ProductService;
+import com.example.clothesshop.service.services.UserService;
 import com.example.clothesshop.web.model.binding.ProductAddBindingModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +18,13 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    private final UserService userService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, ModelMapper modelMapper) {
+    public ProductServiceImpl(ProductRepository productRepository, UserService userService, ModelMapper modelMapper) {
         this.productRepository = productRepository;
+        this.userService = userService;
         this.modelMapper = modelMapper;
     }
 
@@ -34,8 +38,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductServiceModel add(ProductAddBindingModel productAddBindingModel) {
+    public ProductServiceModel add(ProductAddBindingModel productAddBindingModel, String username) {
         Product product = this.modelMapper.map(productAddBindingModel, Product.class);
+
+        User user = this.userService.getUserByUsername(username);
+
+        product.setUser(user);
 
         this.productRepository.saveAndFlush(product);
 
