@@ -9,7 +9,7 @@ public interface ProductService {
 
     List<ProductServiceModel> getAllProducts();
 
-    ProductServiceModel add(ProductAddBindingModel productAddBindingModel);
+    ProductServiceModel add(ProductAddBindingModel productAddBindingModel, String username);
 
     ProductServiceModel getProductById(long id);
 
