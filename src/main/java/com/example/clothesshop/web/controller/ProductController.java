@@ -30,28 +30,26 @@ public class ProductController {
     }
 
     @GetMapping("/add")
-    public String getProduct(@ModelAttribute("product") ProductAddBindingModel productAddBindingModel,
-                             RedirectAttributes redirectAttributes) {
+    public String getProduct(@ModelAttribute("product") ProductAddBindingModel productAddBindingModel) {
 
         if (httpSession.getAttribute("username") == null){
             return "redirect:/user/login";
-
         }
-
         return "add-product";
     }
 
     @PostMapping("/add")
     public String postProduct(@Valid @ModelAttribute("product") ProductAddBindingModel productAddBindingModel,
                               BindingResult result,
-                              RedirectAttributes redirectAttributes) {
+                              RedirectAttributes redirectAttributes,
+                              HttpSession session) {
 
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("product", productAddBindingModel);
             return "/add";
         }
 
-        this.productService.add(productAddBindingModel);
+        this.productService.add(productAddBindingModel, session.getAttribute("username").toString());
         return "redirect:/";
     }
 
