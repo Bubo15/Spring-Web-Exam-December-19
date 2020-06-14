@@ -63,13 +63,12 @@
             </th:block>
         </div>
 
-        <p th:if="${error}" class="errors-1 alert alert-danger text-center" th:text="${error}"/>
-
         <div class="button-holder d-flex justify-content-center">
             <button type="submit" class="btn btn-secondary text-white mb-3" value="Register">Register</button>
         </div>
-
     </form>
+
+    <p th:if="${error}" class="errors-1 alert alert-danger text-center" th:text="${error}"/>
 </main>
 
 <th:block th:insert="footer.html"/>
