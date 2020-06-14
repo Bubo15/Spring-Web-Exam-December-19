@@ -2,6 +2,7 @@ package com.example.clothesshop.service.model;
 
 import com.example.clothesshop.data.entities.Category;
 import com.example.clothesshop.data.entities.Sex;
+import com.example.clothesshop.data.entities.User;
 
 public class ProductServiceModel {
 
@@ -11,6 +12,7 @@ public class ProductServiceModel {
     private double price;
     private Category category;
     private Sex sex;
+    private User user;
 
     public ProductServiceModel() {
     }
@@ -61,5 +63,13 @@ public class ProductServiceModel {
 
     public void setSex(Sex sex) {
         this.sex = sex;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
