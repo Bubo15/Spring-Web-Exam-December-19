@@ -24,19 +24,31 @@ import java.util.Optional;
 public class UserController {
 
     private final UserService userService;
+    private final HttpSession httpSession;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, HttpSession httpSession) {
         this.userService = userService;
+        this.httpSession = httpSession;
     }
 
     @GetMapping("/register")
     public String getRegister(@ModelAttribute("user") UserRegisterBindingModel userRegisterBindingModel) {
+
+        if (httpSession.getAttribute("username") != null){
+            return "redirect:/";
+        }
+
         return "register";
     }
 
     @GetMapping("/login")
     public String getLogin(Model model) {
+
+        if (httpSession.getAttribute("username") != null){
+            return "redirect:/";
+        }
+
         if (model.getAttribute("username") == null) {
             model.addAttribute("username", "");
         }
