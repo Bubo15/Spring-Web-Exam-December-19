@@ -61,7 +61,7 @@ public class UserController {
                                RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
-            redirectAttributes.addFlashAttribute("user", userRegisterBindingModel);
+            // redirectAttributes.addFlashAttribute("user", userRegisterBindingModel);
             return "/register";
         }
 
