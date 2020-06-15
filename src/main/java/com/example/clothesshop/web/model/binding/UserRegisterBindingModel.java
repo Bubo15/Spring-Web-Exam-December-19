@@ -3,7 +3,6 @@ package com.example.clothesshop.web.model.binding;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.ScriptAssert;
 
-import javax.persistence.Column;
 import javax.validation.constraints.Email;
 
 @ScriptAssert(lang = "javascript",
@@ -29,7 +28,6 @@ public class UserRegisterBindingModel {
         this.id = id;
     }
 
-    @Column(name = "username")
     @Length(min = 2, message = "Username must be least 2 symbols")
     public String getUsername() {
         return username;
@@ -39,7 +37,6 @@ public class UserRegisterBindingModel {
         this.username = username;
     }
 
-    @Column(name = "password")
     @Length(min = 5, message = "Password must be least 5 symbols")
     public String getPassword() {
         return password;
@@ -49,7 +46,6 @@ public class UserRegisterBindingModel {
         this.password = password;
     }
 
-    @Column(name = "email")
     @Email
     public String getEmail() {
         return email;
